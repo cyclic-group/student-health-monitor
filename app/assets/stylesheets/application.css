@@ -13,3 +13,56 @@
  *= require_tree .
  *= require_self
  */
+
+ :root {
+    --green-primary: #5DB075;
+    --green-secondary: #ABE794;
+    --gray-primary: #BDBDBD;
+    --gray-secondary: #F6F6F6;
+    --gray-border: #E8E8E8;
+    --red-primary: rgba(255, 0, 0, .78);
+ }
+
+ .button-submit {
+    background: var(--green-primary);
+    color: white;
+    border-radius: 100px;
+    border-style: none;
+    width: 96px;
+    height: 51px;
+ }
+
+ .button-cancel {
+    background: var(--gray-secondary);
+    color: var(--gray-primary);
+    border-radius: 100px;
+    border-style: none;
+    width: 96px;
+    height: 51px;
+ }
+
+ .button-danger {
+    background-color: var(--gray-secondary);
+    color: var(--red-primary);
+    border-radius: 100px;
+    border-style: none;
+    width: 96px;
+    height: 51px;
+ }
+
+ .text-field {
+    background-color: var(--gray-secondary) !important;
+    border: 1px solid var(--gray-border);
+ }
+
+ .floating-label {
+    color: var(--gray-primary);
+ }
+
+ .title {
+    color: var(--green-secondary);
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 250;
+    font-size: 40px;
+ }

@@ -7,21 +7,21 @@
         <div class="col-11 col-sm-6 mt-sm-4">
             <%= form_with url: login_path, method: :post, id: 'login-form', class: 'needs-validation', html: { novalidate: true } do |form| %>
                 <div class="form-floating mb-4 mb-sm-3">
-                    <%= form.text_field :id, class: 'form-control', placeholder: '学号', required: true %>
-                    <%= form.label :id, '学号', class: 'form-label' %>
+                    <%= form.text_field :id, class: 'form-control text-field', placeholder: '学号', required: true %>
+                    <%= form.label :id, '学号', class: 'form-label floating-label' %>
                     <div class="invalid-feedback">
                         必填
                     </div>
                 </div>
                 <div class="form-floating mb-5 mb-sm-4">
-                    <%= form.password_field :password, class: 'form-control', placeholder: '密码', required: true %>
-                    <%= form.label :password, '密码', class: 'form-label' %>
+                    <%= form.password_field :password, class: 'form-control text-field', placeholder: '密码', required: true %>
+                    <%= form.label :password, '密码', class: 'form-label floating-label' %>
                     <div class="invalid-feedback">
                         必填
                     </div>
                 </div>
-                <%= form.submit '登录', id: 'submit-button', class: 'd-block mx-auto' %>
-            <% end %>
+                <%= form.submit '登录', class: 'd-block mx-auto button-submit' %>
+            <% end %> 
         </div>
     </div>
 </div>
