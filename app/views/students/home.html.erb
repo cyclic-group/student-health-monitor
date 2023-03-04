@@ -1,5 +1,5 @@
 <%= render 'layouts/nav_student' %>
-
+<%= debug @current_user %>
 <%= form_with url: login_path, method: 'delete' do |form| %>
-<%= form.submit '注销', class: 'button-danger' %>
+<%= form.submit '注销', class: 'button-danger position-absolute top-40 start-48' %>
 <% end %>
