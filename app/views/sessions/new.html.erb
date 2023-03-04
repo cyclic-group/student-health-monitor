@@ -1,0 +1,48 @@
+<div class="container-md">
+    <div class="row justify-content-center justify-content-sm-around align-items-center">
+        <div class="col-8 mb-5 mt-5 col-sm-4 mb-sm-auto mt-sm-4">
+            <%= image_tag 'logos/logo-png.png', alt: 'App Logo', class: 'img-fluid' %>
+        </div>
+
+        <div class="col-11 col-sm-6 mt-sm-4 col-lg-4">
+            <%= form_with scope: 'session', url: login_path, method: :post, id: 'login-form', class: 'needs-validation', html: { novalidate: true } do |form| %>
+                <div class="form-floating mb-4 mb-sm-3">
+                    <%= form.text_field :pid, class: 'form-control text-field', placeholder: '学号/工号', required: true %>
+                    <%= form.label :pid, '学号/工号', class: 'form-label floating-label' %>
+                    <div class="invalid-feedback">
+                        必填
+                    </div>
+                </div>
+                <div class="form-floating mb-5 mb-sm-4">
+                    <%= form.password_field :password, class: 'form-control text-field', placeholder: '密码', required: true %>
+                    <%= form.label :password, '密码', class: 'form-label floating-label' %>
+                    <div class="invalid-feedback">
+                        必填
+                    </div>
+                </div>
+                <%= form.submit '登录', class: 'd-block mx-auto button-submit' %>
+            <% end %> 
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        'use strict'
+    
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+    
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+    
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+  </script>
