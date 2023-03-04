@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         session[:sid] = params[:session][:sid]
         session[:password] = params[:session][:password]
         
-        redirect_to student_home_path(sid)
+        redirect_to student_home_path('1')
     end
 
     def destroy
