@@ -1,13 +1,13 @@
 class StudentsController < ApplicationController
-    def home
+    def show_home
     end 
     
-    def message
+    def show_message
     end
 
-    def account
+    def show_account
     end
 
-    def report
+    def edit_report
     end
 end
