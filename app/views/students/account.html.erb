@@ -1,0 +1,37 @@
+<%= render 'layouts/nav_student' %>
+<%= render 'layouts/flash' %>
+
+<div class="container-md">
+    <div class="row justify-content-center">
+        <div class="title col-12 text-center mt-4 mb-5">个人信息</div>
+        
+        <div class="col-12">
+        <form>
+        <div class="row justify-content-center align-items-center mb-4 g-5">
+            <label for="name" class="form-label col-auto outer-label">姓名</label>
+            <div class="col-auto">
+            <input disabled name="name" type="text" class="form-control text-field" value="<%= @current_user.last_name + @current_user.first_name %>">
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center mb-4 g-5">
+            <label for="sid" class="col-auto outer-label form-label">学号</label>
+            <div class="col-auto">
+            <input disabled name="sid" type="text" class="form-control text-field" value="<%= @current_user.id %>">
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center mb-5 g-5">
+            <label for="dormitary" class="col-auto outer-label form-label">宿舍</label>
+            <div class="col-auto">
+            <input disabled name="dormitary" type="text" class="form-control text-field" value="<%= @current_user.dormitary %>">
+            </div>
+        </div>
+
+        </form>
+        </div>
+        
+        <div class="col-10">
+            <%= form_with url: login_path, method: 'delete' do |form| %>
+            <%= form.submit '注销', class: 'button-danger d-block mx-auto' %>
+        </div>
+    <% end %>
+</div>

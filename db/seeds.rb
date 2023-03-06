@@ -8,4 +8,4 @@
 
 Person.delete_all 
 Person.create(id: 112358, password_hash: '$2a$12$pRQQQ8lTeyFx.Aa7Pxc.VuiCvDRqnaaF12FY00H2wnLFhrOT2UhBy', 
-    last_name: '高', first_name: '康平', dormitary: nil, role: 'student')
+    last_name: '高', first_name: '康平', dormitary: '润园6号公寓B座233', role: 'student')

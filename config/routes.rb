@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   delete 'login', to: 'sessions#destroy'
 
   get 'student/home', to: 'students#home', as: 'student_home'
+  get 'student/message', to: 'students#message', as: 'student_message'
+  get 'student/report', to: 'students#report', as: 'student_report'
+  get 'student/account', to: 'students#account', as: 'student_account'
+
 end

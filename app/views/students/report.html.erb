@@ -1,0 +1,10 @@
+<%= render 'layouts/nav_student' %>
+<%= render 'layouts/flash' %>
+
+<div class="container-md">
+    <div class="row justify-content-center">
+        <div class="col-12 title">健康打卡</div>
+        <%= form_with scope: report, method: 'post', url: student_report_path, class: needs-validation, html: { novalidate: true } do |form| %>
+        <% end %>
+    </div>
+</div>
