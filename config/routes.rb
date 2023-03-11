@@ -9,5 +9,11 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
 
-  get 'student/home', to: 'students#home', as: 'student_home'
+  get 'student/home', to: 'students#show_home', as: 'student_home'
+  get 'student/messages', to: 'students#show_messages', as: 'student_messages'
+  get 'student/report', to: 'students#new_report', as: 'student_report'
+  get 'student/account', to: 'students#show_account', as: 'student_account'
+  
+  post 'student/report', to: 'students#create_report'
+
 end

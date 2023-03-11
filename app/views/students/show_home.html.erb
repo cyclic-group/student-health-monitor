@@ -1,0 +1,32 @@
+<%= render 'layouts/nav_student' %>
+<%= render 'layouts/flash'%>
+
+<div class="container-md">
+    <div class="row justify-content-center align-items-center mt-4 mb-5">
+        <div class="col-6 title">
+            <span id="title-prefix">你好</span>，<br>&nbsp&nbsp&nbsp&nbsp<%= @current_user.last_name %>同学
+        </div>
+        <div class="col-4">
+            <%= image_tag 'logos/logo-png.png', alt: 'App logo', class: 'img-fluid' %>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10 home-content">
+            &nbsp&nbsp&nbsp&nbsp&nbsp您已坚持打卡0天，请再接再厉！您有0条未读消息！
+        </div>
+    </div>
+</div>
+
+<script>
+    var curHur = new Date().getHours()
+    var prefix = null 
+    if (curHur < 12) {
+        prefix = '早上好'
+    } else if (curHur < 18) {
+        prefix = '中午好'
+    } else {
+        prefix = '晚上好'
+    }
+
+    document.querySelector('#title-prefix').textContent = prefix 
+</script>

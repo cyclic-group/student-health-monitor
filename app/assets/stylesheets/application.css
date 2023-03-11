@@ -53,6 +53,7 @@
  .text-field {
     background-color: var(--gray-secondary) !important;
     border: 1px solid var(--gray-border);
+    border-radius: 8px !important;
  }
 
  .floating-label {
@@ -60,12 +61,20 @@
  }
 
  .title {
-    color: var(--green-secondary);
+    color: var(--green-primary);
     font-family: 'Lato';
     font-style: normal;
     font-weight: 250;
     font-size: 40px;
  }
+
+ .home-content {
+      color: var(--green-primary);
+      font-family: 'Lato';
+      font-style: normal;
+      font-weight: 250;
+      font-size: 30px;
+}
 
 nav {
     background-color: var(--green-primary);
@@ -89,4 +98,29 @@ nav {
 .icon {
     width: 20px !important;
 }
+
+.outer-label {
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+}
+
+.checkbox:checked {
+   background-color: var(--green-primary) !important;
+}
+
+button.decrement-button {
+   border-right: 0px;
+   border-color: var(--gray-border);
+}
+
+button.increment-button {
+   border-left: 0px;
+   border-color: var(--gray-border);
+}
   
+.input-group input {
+   border-left: 0px;
+   border-right: 0px;
+   border-color: var(--gray-border);
+}
