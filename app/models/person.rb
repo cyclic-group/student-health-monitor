@@ -4,7 +4,6 @@ class Person < ApplicationRecord
     has_many :reports, foreign_key: 'reporter_id'
 
     validates :password_hash, presence: true 
-    validates :salt, presence: true 
     validates :role, presence: true 
     validates :role, inclusion: { in: ['admin', 'doctor', 'student'] }
     validates :last_name, presence: true
