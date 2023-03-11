@@ -104,4 +104,23 @@ nav {
    font-weight: 400;
    font-size: 24px;
 }
+
+.checkbox:checked {
+   background-color: var(--green-primary) !important;
+}
+
+button.decrement-button {
+   border-right: 0px;
+   border-color: var(--gray-border);
+}
+
+button.increment-button {
+   border-left: 0px;
+   border-color: var(--gray-border);
+}
   
+.input-group input {
+   border-left: 0px;
+   border-right: 0px;
+   border-color: var(--gray-border);
+}

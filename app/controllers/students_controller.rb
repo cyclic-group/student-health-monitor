@@ -9,5 +9,9 @@ class StudentsController < ApplicationController
     end
 
     def edit_report
+        @report = Report.new
+    end
+
+    def create_report 
     end
 end
