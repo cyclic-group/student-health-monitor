@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-12 title col-12 text-center mt-4 mb-4">健康打卡</div>
         <div class="col-10">
-        <%= form_with model: @report, method: 'post', url: student_report_path, class: 'needs-validation', html: { novalidate: true } do |form| %>
+        <%= form_with model: @report, scope: :report, method: 'post', url: student_report_path, class: 'needs-validation', html: { novalidate: true } do |form| %>
         <div class='input-group row mb-3'>
             <%= form.label :step_count, '步数', class: 'form-label outer-label col-6' %>
             <button class="btn btn-outline-secondary col-auto decrement-button" type="button"><i class="fa-solid fa-minus"></i></button>
