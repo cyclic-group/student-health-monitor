@@ -20,10 +20,12 @@
 <script>
     var curHur = new Date().getHours()
     var prefix = null 
-    if (curHur < 12) {
+    if (curHur < 10) {
         prefix = '早上好'
-    } else if (curHur < 18) {
+    } else if (curHur < 13) {
         prefix = '中午好'
+    } else if (curHur < 18) {
+        prefix = '下午好'
     } else {
         prefix = '晚上好'
     }
