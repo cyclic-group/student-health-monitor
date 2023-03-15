@@ -1,5 +1,4 @@
-class Person < ApplicationRecord
-    include BCrypt 
+class User < ApplicationRecord
 
     has_many :reports, foreign_key: 'reporter_id'
 
