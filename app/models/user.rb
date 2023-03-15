@@ -1,5 +1,7 @@
+require 'bcrypt'
+
 class User < ApplicationRecord
-    include Bcrypt  # 采用bcrypt散列值算法存储密码
+    include BCrypt  # 采用bcrypt散列值算法存储密码
 
     has_many :reports, foreign_key: 'reporter_id'
 
