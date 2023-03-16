@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
         @current_user ||= User.find_by_id(session[:user_id])
         unless @current_user 
             flash[:warning] = "请先登录"
-            redirect_to login_path 
+            render 'sessions/new', status: 401
         end
+    end
+
+    def render_404
+        render file: "#{Rails.root}/public/404.html", status: 404
     end
 end

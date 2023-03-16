@@ -17,4 +17,16 @@ class User < ApplicationRecord
     def password=(new_password)
         self.password_hash = Password.create(new_password)
     end
+
+    def student?
+        self.role == 'student'
+    end
+    
+    def admin?
+        self.role == 'admin'
+    end
+
+    def doctor?
+        self.role == 'doctor'
+    end 
 end

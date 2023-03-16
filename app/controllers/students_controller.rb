@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+    before_action :set_current_student
+
     def show_home
     end 
     
@@ -27,5 +29,13 @@ class StudentsController < ApplicationController
     private 
     def report_params
         params.require(:report).permit(:step_count, :sleep_hours, symptons: [])
+    end
+
+    def set_current_student
+        @current_student ||= Student.find_by(id: @current_user.id)
+        unless @current_student
+            flash.now[:warning] = '非学生账号'
+            render 'session/new', status: 403
+        end
     end
 end
