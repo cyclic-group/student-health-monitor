@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         # 如果认证成功则创建cookie会话
         if user && user.authenticate(@user_password)
             session[:user_id] = @user_id
-            redirect_to student_home_path(user_id)
+            redirect_to student_home_path(@user_id)
         else  
             flash.now[:warning] = '密码错误'
             render :new, status: :unprocessable_entity

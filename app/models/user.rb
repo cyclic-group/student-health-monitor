@@ -7,8 +7,6 @@ class User < ApplicationRecord
 
     validates :password_hash, presence: true  
     validates :role, presence: true, inclusion: { in: ['admin', 'doctor', 'student'] }
-    validates :last_name, presence: true
-    validates :first_name, presence: true 
 
     # 验证密码，返回`true`当且仅当密码正确
     def authenticate(input_password)
