@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   
   post 'student/report', to: 'students#create_report'
 
+  get 'student/announcement/:id', to: 'students#show_announcement', as: 'student_announcement'
+  get 'student/message/:id', to: 'students#show_message', as: 'student_message'
+
 end

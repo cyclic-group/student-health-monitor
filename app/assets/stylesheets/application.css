@@ -23,6 +23,8 @@
     --red-primary: rgba(255, 0, 0, .78);
  }
 
+/* buttons */
+
  .button-submit {
     background: var(--green-primary);
     color: white;
@@ -50,15 +52,45 @@
     height: 51px;
  }
 
+button.decrement-button {
+   border-right: 0px;
+   border-color: var(--gray-border);
+}
+
+button.increment-button {
+   border-left: 0px;
+   border-color: var(--gray-border);
+}
+
+/* form elements */
+
  .text-field {
     background-color: var(--gray-secondary) !important;
     border: 1px solid var(--gray-border);
     border-radius: 8px !important;
  }
 
+ .label {
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+}
+
  .floating-label {
     color: var(--gray-primary);
  }
+
+ .checkbox:checked {
+   background-color: var(--green-primary) !important;
+}
+
+.input-group input {
+   border-left: 0px;
+   border-right: 0px;
+   border-color: var(--gray-border);
+}
+
+ /* text */
 
  .title {
     color: var(--green-primary);
@@ -76,7 +108,27 @@
       font-size: 30px;
 }
 
-nav {
+.message-unread {
+   font-weight: 600 !important;
+   font-size: 16px !important;
+   color: var(--green-primary) !important;
+}
+
+.message-read {
+   font-weight: 500 !important;
+   font-size: 16px !important;
+   color: var(--gray-primary) !important;
+}
+
+.message-announcement {
+   font-weight: 600 !important;
+   font-size: 16px !important;
+   color: var(--red-primary) !important;
+}
+
+/* navigation bar */
+
+.navbar {
     background-color: var(--green-primary);
 }
 
@@ -95,32 +147,8 @@ nav {
     }  
   }
 
+  /* others */
+
 .icon {
     width: 20px !important;
-}
-
-.outer-label {
-   font-style: normal;
-   font-weight: 400;
-   font-size: 24px;
-}
-
-.checkbox:checked {
-   background-color: var(--green-primary) !important;
-}
-
-button.decrement-button {
-   border-right: 0px;
-   border-color: var(--gray-border);
-}
-
-button.increment-button {
-   border-left: 0px;
-   border-color: var(--gray-border);
-}
-  
-.input-group input {
-   border-left: 0px;
-   border-right: 0px;
-   border-color: var(--gray-border);
 }

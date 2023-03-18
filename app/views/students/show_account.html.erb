@@ -1,4 +1,4 @@
-<%= render 'layouts/nav_student' %>
+<%= render 'nav' %>
 <%= render 'layouts/flash' %>
 
 <div class="container-md">
@@ -8,21 +8,21 @@
         <div class="col-12">
         <form>
         <div class="row justify-content-center align-items-center mb-4 g-5">
-            <label for="name" class="form-label col-auto outer-label">姓名</label>
+            <label for="name" class="form-label col-auto label">姓名</label>
             <div class="col-auto">
-            <input disabled name="name" type="text" class="form-control text-field" value="<%= @current_user.last_name + @current_user.first_name %>">
+            <input disabled name="name" type="text" class="form-control text-field" value="<%= @current_student.last_name + @current_student.first_name %>">
             </div>
         </div>
         <div class="row justify-content-center align-items-center mb-4 g-5">
-            <label for="sid" class="col-auto outer-label form-label">学号</label>
+            <label for="sid" class="col-auto label form-label">学号</label>
             <div class="col-auto">
-            <input disabled name="sid" type="text" class="form-control text-field" value="<%= @current_user.id %>">
+            <input disabled name="sid" type="text" class="form-control text-field" value="<%= @current_student.id %>">
             </div>
         </div>
         <div class="row justify-content-center align-items-center mb-5 g-5">
-            <label for="dormitary" class="col-auto outer-label form-label">宿舍</label>
+            <label for="dormitary" class="col-auto label form-label">宿舍</label>
             <div class="col-auto">
-            <input disabled name="dormitary" type="text" class="form-control text-field" value="<%= @current_user.dormitary %>">
+            <input disabled name="dormitary" type="text" class="form-control text-field" value="<%= @current_student.dormitary %>">
             </div>
         </div>
 

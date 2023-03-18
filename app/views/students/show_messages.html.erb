@@ -1,2 +1,43 @@
-<%= render 'layouts/nav_student' %>
+<%= render 'nav' %>
 <%= render 'layouts/flash' %>
+
+<div class="container-fluid p-0">
+<div class="table-responsive-md">
+    <table class="table">
+        <tbody>
+            <% @messages.each do |m| %>
+                <% if m.class == Announcement %>
+                    <tr class="table-danger message-announcement">
+                    <td><a href="<%= student_announcement_path m.id %>">管理员</a></td>
+                    <td><a href="<%= student_announcement_path m.id %>"><%= m.title %></a></td>
+                    <td class="me-0 text-end">
+                    <a href="<%= student_announcement_path m.id %>">
+                    <%= m.created_at.strftime("%H:%M\u00A0%p") %>
+                    </a>
+                    </td>
+                <% elsif m.unread == true %>
+                    <tr class="table-success message-unread">
+                    <td><a href="<%= student_message_path m.id %>">校医</a></td>
+                    <td><a href="<%= student_message_path m.id %>"><%= m.title %></a></td>
+                    <td class="me-0 text-end">
+                    <a href="<%= student_message_path m.id %>">
+                    <%= m.created_at.strftime("%H:%M\u00A0%p") %>
+                    </a>
+                    </td>
+                <% else %>
+                    <tr class="message-read table-light">
+                    <td><a href="<%= student_message_path m.id %>">校医</a></td>
+                    <td><a href="<%= student_message_path m.id %>"><%= m.title %></a></td>
+                    <td class="me-0 text-end">
+                    <a href="<%= student_message_path m.id %>">
+                    <%= m.created_at.strftime("%H:%M\u00A0%p") %>
+                    </a>
+                    </td> 
+                <% end %>
+
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+</div>
