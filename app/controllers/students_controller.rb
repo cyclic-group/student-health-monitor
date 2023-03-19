@@ -7,13 +7,18 @@ class StudentsController < ApplicationController
     end 
     
     def show_messages
-        @messages = (Message.all.to_a + Announcement.all.to_a).sort_by { |m| m.created_at }.reverse
+        @messages = @current_student.messages.sort_by { |m| m.created_at }.reverse
     end
 
     def show_message
-    end
-
-    def show_announcement 
+        @message = Message.find_by(id: params[:id], receiver_id: [User::BROADCAST_ID, @current_student.id])
+        if @message
+            @message.unread = false
+            @message.save
+            render :show_message 
+        else 
+            redirect_to student_messages_path, status: 404
+        end 
     end
 
     def show_account

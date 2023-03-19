@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   get 'student/messages', to: 'students#show_messages', as: 'student_messages'
   get 'student/report', to: 'students#new_report', as: 'student_report'
   get 'student/account', to: 'students#show_account', as: 'student_account'
-  
   post 'student/report', to: 'students#create_report'
-
-  get 'student/announcement/:id', to: 'students#show_announcement', as: 'student_announcement'
   get 'student/message/:id', to: 'students#show_message', as: 'student_message'
+
+  get 'doctor/reports', to: 'doctor#show_reports', as: 'doctor_reports'
+  get 'doctor/message', to: 'doctor#new_message', as: 'doctor_message'
+  post 'doctor/message', to: 'doctor#create_message'
+  get 'doctor/report/:id', to: 'doctor#new_message', as: 'doctor_report'
 
 end

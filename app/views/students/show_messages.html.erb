@@ -3,39 +3,38 @@
 
 <div class="container-fluid p-0">
 <div class="table-responsive-md">
-    <table class="table">
+    <table class="table table-hover">
         <tbody>
             <% @messages.each do |m| %>
-                <% if m.class == Announcement %>
-                    <tr class="table-danger message-announcement">
-                    <td><a href="<%= student_announcement_path m.id %>">管理员</a></td>
-                    <td><a href="<%= student_announcement_path m.id %>"><%= m.title %></a></td>
-                    <td class="me-0 text-end">
-                    <a href="<%= student_announcement_path m.id %>">
-                    <%= m.created_at.strftime("%H:%M\u00A0%p") %>
-                    </a>
-                    </td>
-                <% elsif m.unread == true %>
-                    <tr class="table-success message-unread">
-                    <td><a href="<%= student_message_path m.id %>">校医</a></td>
-                    <td><a href="<%= student_message_path m.id %>"><%= m.title %></a></td>
-                    <td class="me-0 text-end">
-                    <a href="<%= student_message_path m.id %>">
-                    <%= m.created_at.strftime("%H:%M\u00A0%p") %>
-                    </a>
-                    </td>
-                <% else %>
-                    <tr class="message-read table-light">
-                    <td><a href="<%= student_message_path m.id %>">校医</a></td>
-                    <td><a href="<%= student_message_path m.id %>"><%= m.title %></a></td>
-                    <td class="me-0 text-end">
-                    <a href="<%= student_message_path m.id %>">
-                    <%= m.created_at.strftime("%H:%M\u00A0%p") %>
-                    </a>
-                    </td> 
-                <% end %>
 
+                <%
+                    row_class = ''
+                    text_class = ''
+                    sender_name = m.announcement? ? '管理员' : '校医'
+                    icon_class = m.announcement? ? 'fa-solid fa-circle-exclamation' : 'fa-solid fa-notes-medical'
+                    if !m.unread
+                        row_class = 'table-secondary'
+                        text_class = 'message-unread'
+                        icon_class += ' icon-unread'
+                    elsif m.announcement? 
+                        row_class = 'table-danger'
+                        text_class = 'message-announcement'
+                        icon_class += ' icon-announcement'
+                    else
+                        row_class = 'table-success'
+                        text_class = 'message-doctor'
+                        icon_class += ' icon-doctor'
+                    end
+                        
+                %>
+                
+                <tr class="<%= row_class %>">
+                    <td width=1><i class="<%= icon_class %>"></i></td>
+                    <td><%= link_to sender_name, student_message_path(m.id), class: text_class + ' d-block' %></td>
+                    <td><%= link_to m.title, student_message_path(m.id), class: text_class + ' d-block' %></td>
+                    <td class="me-0 text-end"><%= link_to m.created_at.strftime("%H:%M\u00A0%p"), student_message_path(m.id), class: text_class + ' d-block' %></td>
                 </tr>
+                
             <% end %>
         </tbody>
     </table>
