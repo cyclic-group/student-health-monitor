@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'student/report', to: 'students#create_report'
   get 'student/message/:id', to: 'students#show_message', as: 'student_message'
 
-  get 'doctor/reports', to: 'doctor#show_reports', as: 'doctor_reports'
+  get 'doctor/home', to: 'doctor#show_home', as: 'doctor_home'
   get 'doctor/message', to: 'doctor#new_message', as: 'doctor_message'
   post 'doctor/message', to: 'doctor#create_message'
   get 'doctor/report/:id', to: 'doctor#new_message', as: 'doctor_report'

@@ -63,7 +63,7 @@ button.increment-button {
    border-color: var(--gray-border);
 }
 
-.button-back {
+.app-color-blue-dark {
    color: var(--blue-dark) !important;
 }
 
@@ -89,7 +89,7 @@ button.increment-button {
    background-color: var(--green-primary) !important;
 }
 
-.input-group input {
+.increment-field {
    border-left: 0px;
    border-right: 0px;
    border-color: var(--gray-border);
