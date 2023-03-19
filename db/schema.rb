@@ -10,18 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_100526) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_18_074651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "people", force: :cascade do |t|
-    t.string "password_hash"
-    t.string "role"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "dormitary"
+  create_table "announcements", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "unread", default: true
   end
 
   create_table "reports", force: :cascade do |t|
@@ -31,7 +38,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_100526) do
     t.string "symptons", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "remark"
   end
 
-  add_foreign_key "reports", "people", column: "reporter_id", on_update: :cascade, on_delete: :cascade
+  create_table "students", force: :cascade do |t|
+    t.string "last_name"
+    t.string "first_name"
+    t.string "dormitary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "password_hash"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "messages", "students", column: "receiver_id", on_update: :cascade
+  add_foreign_key "messages", "users", column: "sender_id", on_delete: :cascade
+  add_foreign_key "reports", "students", column: "reporter_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "students", "users", column: "id", on_update: :cascade, on_delete: :cascade
 end

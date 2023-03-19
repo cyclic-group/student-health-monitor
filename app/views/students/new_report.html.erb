@@ -1,22 +1,22 @@
-<%= render 'layouts/nav_student' %>
+<%= render 'nav' %>
 <%= render 'layouts/flash' %>
 
 <div class="container-md">
     <div class="row justify-content-center">
         <div class="col-12 title col-12 text-center mt-4 mb-4">健康打卡</div>
         <div class="col-10">
-        <%= form_with model: @report, scope: :report, method: 'post', url: student_report_path, class: 'needs-validation', html: { novalidate: true } do |form| %>
+        <%= form_with model: @report, method: 'post', url: student_report_path, class: 'needs-validation', html: { novalidate: true } do |form| %>
         <div class='input-group row mb-3'>
-            <%= form.label :step_count, '步数', class: 'form-label outer-label col-6' %>
+            <%= form.label :step_count, '步数', class: 'form-label label col-6' %>
             <button class="btn btn-outline-secondary col-auto decrement-button" type="button"><i class="fa-solid fa-minus"></i></button>
-            <%= form.number_field :step_count, class: 'form-control col-auto text-center', value: '0', required: true, min: '0' %>
+            <%= form.number_field :step_count, class: 'form-control col-auto text-center', value: '0', required: true, min: '0', step: '1000' %>
             <button class="btn btn-outline-secondary col-auto increment-button" type="button"><i class="fa-solid fa-plus"></i></button>
             <div class="invalid-feedback">
                 请填写有效数字
             </div>
         </div>
         <div class="input-group row mb-3">
-            <%= form.label :sleep_hours, '睡眠小时', class: 'form-label outer-label col-6' %>
+            <%= form.label :sleep_hours, '睡眠小时', class: 'form-label label col-6' %>
             <button class="btn btn-outline-secondary col-auto decrement-button" type="button"><i class="fa-solid fa-minus"></i></button>
             <%= form.number_field :sleep_hours, class: 'form-control col-auto text-center', value: '0', required: true, min: '0', max: '24' %>
             <button class="btn btn-outline-secondary col-auto increment-button" type="button"><i class="fa-solid fa-plus"></i></button>
@@ -24,13 +24,15 @@
                 请填写有效数字
             </div>
         </div>
-            <%= form.label :symptons, '是否具有以下症状：', class: 'form-label outer-label mb-3'%>
+            <%= form.label :symptons, '是否具有以下症状：', class: 'form-label label mb-3'%>
             <%= form.collection_check_boxes :symptons, ['发热', '呕吐', '腹泻', '咳嗽', '咽痛', '鼻塞', '流涕'], :to_s, :to_s do |b| %>
                 <div class="form-check ms-3">
                     <%= b.check_box class: "form-check-input checkbox" %>
                     <%= b.label class: "form-check-label" %>
                 </div>
             <% end %>
+            <%= form.label :remark, '备注：', class: 'form-label label mt-4 mb-3' %>
+            <%= form.text_area :remark, class: 'form-control', rows: '3', placeholder: '选填' %>
             <%= form.submit '提交', class: "button-submit mt-4 d-block mx-auto" %>
         <% end %>
         </div>
