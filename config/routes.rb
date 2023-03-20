@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'doctor/home', to: 'doctor#show_home', as: 'doctor_home'
   get 'doctor/message', to: 'doctor#new_message', as: 'doctor_message'
   post 'doctor/message', to: 'doctor#create_message'
-  get 'doctor/report/:id', to: 'doctor#new_message', as: 'doctor_report'
+
+  get 'admin/home', to: 'admin#show_home', as: 'admin_home'
+  get 'admin/announcement', to: 'admin#new_announcement', as: 'admin_announce'
+  post 'admin/announcement', to: 'admin#create_announcement'
 
 end
