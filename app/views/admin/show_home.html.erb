@@ -1,0 +1,37 @@
+<%= render 'nav' %>
+<%= render 'layouts/flash_toast' %>
+
+<div class="container-md pt-4 pt-md-5 pb-5 px-4 px-sm-5">
+<div class="row row-cols-1 row-cols-lg-2 g-5">
+<div class="col-12">
+    <div class="card bg-light border-success text-dark box-shadow">
+        <div class="card-header app-color-blue-dark fw-bold fs-4">
+            症状分布（最近一个月）
+        </div>
+        <div class="card-body">
+            <%
+                sympton_counts = {}
+                Report::SYMPTONS.each do |sympton| 
+                    sympton_counts[sympton] = Report.within_one_month.has_sympton(sympton).size 
+                end
+            %>
+            <%= pie_chart sympton_counts %>
+        </div>
+    </div>
+</div>
+<%  
+    Report::SYMPTONS.zip(['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6']).each do |sympton, color| 
+%>
+    <div class="col">
+        <div class="card bg-light border-success text-dark box-shadow">
+            <div class="card-header app-color-blue-dark fw-bold fs-4">
+                <%= "#{sympton}人数" %>
+            </div>
+            <div class="card-body">
+                <%= line_chart Report.within_one_month.has_sympton(sympton).group_by_day(:created_at).count, colors: [color] %>
+            </div>
+        </div>
+    </div>
+<% end %>
+</div>
+</div>

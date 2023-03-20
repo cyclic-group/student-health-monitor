@@ -16,6 +16,8 @@ class SessionsController < ApplicationController
                 redirect_to student_home_path
             elsif user.doctor? 
                 redirect_to doctor_home_path
+            elsif user.admin?
+                redirect_to admin_home_path
             else 
                 flash.now[:warning] = '服务器故障'
                 render :new, status: 500

@@ -2,7 +2,7 @@ class DoctorController < ApplicationController
     before_action :check_identity 
 
     def show_home 
-        @problematic_reports = Report.all.to_a.filter { |r| r.problematic? } 
+        @problematic_reports = Report.all.to_a.filter { |r| r.problematic? }.sort_by{|r| r.created_at}.reverse
     end
 
     def new_message
@@ -37,8 +37,8 @@ class DoctorController < ApplicationController
     # 检查访问者是否为校医
     def check_identity 
         unless @current_user.doctor? 
-            flash.now[:warning] = "非校医账号"
-            render 'session/new', status: 403 
+            flash.now[:warning] = "非校医账号，请重新登录"
+            render 'sessions/new', status: 403 
         end 
     end
 end
