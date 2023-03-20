@@ -67,7 +67,7 @@ document.querySelectorAll('.increment-button').forEach( button => {
 );
 
 document.querySelectorAll('.decrement-button').forEach( button => {
-    button.addEventListener('click', () => button.nextElementSibling.stepDown(button.previousElementSibling.dataset.incr) )
+    button.addEventListener('click', () => button.nextElementSibling.stepDown(button.nextElementSibling.dataset.incr) )
     button.addEventListener('dblclick', (event) =>  event.preventDefault() )
 }
 );
