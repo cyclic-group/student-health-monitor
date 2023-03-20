@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   post 'doctor/message', to: 'doctor#create_message'
 
   get 'admin/home', to: 'admin#show_home', as: 'admin_home'
-  get 'admin/announcement', to: 'admin#new_announcement', as: 'admin_announce'
+  get 'admin/announcement', to: 'admin#new_announcement', as: 'admin_announcement'
   post 'admin/announcement', to: 'admin#create_announcement'
-
+  get 'admin/password', to: 'admin#edit_password', as: 'admin_password'
+  post 'admin/password', to: 'admin#update_password'
 end
