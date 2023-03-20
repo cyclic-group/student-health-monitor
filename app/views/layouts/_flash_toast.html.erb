@@ -1,0 +1,39 @@
+<% if flash[:success] %>
+  <div class="toast-container mx-auto fixed-top mt-5">
+  <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+  <div class="d-flex alert-success">
+    <div class="toast-body">
+      <i class="fa-solid fa-circle-check me-1"></i><%= flash[:success] %>
+    </div>
+    <button id="toastbtn" type="button" class="btn-close m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  </div>
+  </div>
+<% elsif flash[:warning] %>
+    <div class="toast-container mx-auto fixed-top mt-5">
+  <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+  <div class="d-flex alert-danger">
+    <div class="toast-body">
+      <i class="fa-solid fa-circle-exclamation me-1"></i><%= flash[:warning] %>
+    </div>
+    <button id="toastbtn" type="button" class="btn-close m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  </div>
+  </div>
+<% end %>
+
+<script defer>
+    document.querySelectorAll(".btn-close").forEach(btn => btn.addEventListener('click', () => {
+        let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        let toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl)
+        })
+        toastList.forEach(toast => toast.hide())
+    }));
+
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+    var toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl)
+    })
+    toastList.forEach(toast => toast.show())
+</script>

@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'bcrypt'
 
+# 辅助方法
+
 def generate_announcement(content)
     Message.create!(content: content, title: "公告X", sender_id: 0, receiver_id: User::BROADCAST_ID)
 end 
@@ -18,14 +20,25 @@ end
 # 50% returns 0, 50% returns 1
 def flip_coin 
     (Random.random_number * 2).floor 
+end 
+
+# 随机产生症状 
+def rand_symptons
+    [""] + Report::SYMPTONS.sample((Random.random_number * Report::SYMPTONS.size).floor) 
 end
+
+# 随机产生日期
+def rand_date 
+    Time.now - (Random.random_number * 5).floor.day 
+end 
+
 
 # Insert users
 User.delete_all
 User.create!(id: User::BROADCAST_ID, password_hash: BCrypt::Password.create('2357bd'), role: 'student')
 Student.create!(id: User::BROADCAST_ID, last_name: '--', first_name: '--', dormitary: '--')
-User.create!(id: 0, password_hash: BCrypt::Password.create('2357db'), role: 'admin')
-User.create!(id: 1, password_hash: BCrypt::Password.create('2357db'), role: 'doctor')
+User.create!(id: 0, password_hash: BCrypt::Password.create('2357bd'), role: 'admin')
+User.create!(id: 1, password_hash: BCrypt::Password.create('2357bd'), role: 'doctor')
 User.create!(id: 112358, password_hash: BCrypt::Password.create('gkp233'), role: 'student')
 Student.create!(id: 112358, last_name: '高', first_name: '康平', dormitary: '润园6号公寓B座233')
 
@@ -83,3 +96,32 @@ while true
         break 
     end 
 end
+
+# insert reports
+Report.destroy_all
+report_remarks = [
+   "我感到非常疲乏和无力，同时呼吸急促，咳嗽不停，好像一直透不过气来。",
+
+"我胸口剧烈疼痛，心跳加速，喘不过气，感觉好像快要窒息了，这些症状让我非常害怕。",
+
+"我突然失明了，眼睛又红又肿，疼痛难忍，我觉得自己好像被什么东西攻击了一样。",
+
+"我肚子疼痛难忍，拉肚子，还一直想吐，感觉自己的胃肠道好像遭受了某种感染。",
+
+"我头痛欲裂，恶心呕吐，还晕晕的，感觉好像自己的头要爆炸了。",
+
+"长备注" * 50,
+
+"我一直感觉呼吸困难，胸口闷得慌，有时候还会咳嗽，这些症状令我非常不舒服。",
+
+"我感到全身不舒服，发热、头痛、关节痛、皮疹，这些症状令我觉得自己生病了。",
+
+"我背部疼痛，身体酸痛，感觉非常疲惫，好像连站起来都很困难。",
+
+"我感到尿频、尿急和尿痛，好像尿路受到了某种感染或者其他问题。",
+
+"我感到非常焦虑、抑郁，思维不集中，好像自己的精神状态出了问题。"
+]
+report_remarks.each do |remark| 
+    Report.create!(reporter_id: 112358, step_count: rand(0..10_000), sleep_hours: rand(0..24),  symptons: rand_symptons, remark: remark, created_at: rand_date)
+end 
