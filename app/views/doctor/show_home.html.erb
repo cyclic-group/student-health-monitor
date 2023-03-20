@@ -11,7 +11,7 @@
     <%= "ID: #{r.reporter.id}" %>
     </div>
     <div class="card-body">
-      <%= image_tag :patient_avatar, class: "card-img-top" %>
+      <%= image_tag 'patient_avatar.png', class: "card-img-top" %>
 
       <h6 class="card-subtitle text-muted">症状</h6>
       <p class="card-text"><%= "#{r.valid_symptons.join('，')}" %></p>
