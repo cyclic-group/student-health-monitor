@@ -20,6 +20,6 @@ module StudentHealthMonitor
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.time_zone = "Asia/Shanghai"
-    config.hosts << '.ngrok.io'
+    # config.hosts << '.ngrok.io'
   end
 end
