@@ -29,7 +29,7 @@ end
 
 # 随机产生日期
 def rand_date 
-    Time.now - (Random.random_number * 5).floor.day 
+    Time.now - (Random.random_number * 30).floor.day 
 end 
 
 
@@ -125,3 +125,7 @@ report_remarks = [
 report_remarks.each do |remark| 
     Report.create!(reporter_id: 112358, step_count: rand(0..10_000), sleep_hours: rand(0..24),  symptons: rand_symptons, remark: remark, created_at: rand_date)
 end 
+
+(1..500).each do 
+    Report.create!(reporter_id: 112358, step_count: rand(0..10_000), sleep_hours: rand(0..24),  symptons: rand_symptons, remark: "", created_at: rand_date)
+end

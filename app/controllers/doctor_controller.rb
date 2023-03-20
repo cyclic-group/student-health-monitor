@@ -2,7 +2,7 @@ class DoctorController < ApplicationController
     before_action :check_identity 
 
     def show_home 
-        @problematic_reports = Report.all.to_a.filter { |r| r.problematic? } 
+        @problematic_reports = Report.all.to_a.filter { |r| r.problematic? }.sort_by{|r| r.created_at}.reverse
     end
 
     def new_message

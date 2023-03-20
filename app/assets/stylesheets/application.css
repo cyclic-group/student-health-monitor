@@ -198,3 +198,13 @@ button.increment-button {
    -o-transform: translateY(-15);
    transform: translateY(-15);
 }
+
+
+
+.card:hover{
+   transform:scale(1.1);
+}
+
+.card{
+ transition:.3s;
+}

@@ -22,4 +22,12 @@ class Report < ApplicationRecord
     def days_ago 
         ((Time.now - self.created_at) / (60 * 60 * 24)).floor 
     end
+
+    def self.has_sympton sympton 
+        Report.where(":sympton=ANY(symptons)", { sympton: sympton })
+    end
+
+    def self.within_one_month
+        Report.where("created_at > :one_month_ago", { one_month_ago: 1.month.ago })
+    end
 end
