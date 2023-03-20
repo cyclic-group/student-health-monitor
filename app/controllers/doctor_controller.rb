@@ -1,11 +1,13 @@
 class DoctorController < ApplicationController
     before_action :check_identity 
 
-    def show_home  
+    def show_home 
+        @problematic_reports = Report.all.to_a.filter { |r| r.problematic? } 
     end
 
     def new_message
         @message = Message.new
+        @report = Report.find_by(id: params[:report_id])
     end 
 
     def create_message
@@ -13,12 +15,17 @@ class DoctorController < ApplicationController
             m.sender = @current_user
         end 
 
-        if @message.save 
+        if @message.save
+            report = Report.find_by(id: params[:report_id])
+            if report 
+                report.responsed = true
+                report.save 
+            end
             flash[:success] = '发送成功'
-            redirect_to doctor_message_path
+            redirect_to doctor_home_path 
         else 
-            flash.now[:warning] = '填写错误'
-            render doctor_message_path, status: 422
+            flash.now[:warning] = '收件人不存在'
+            render :new_message, status: 422
         end
     end
 

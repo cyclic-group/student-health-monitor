@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user_id = params[:session][:user_id]
-        @user_password = params[:session][:user_password]
+        @user_id = session_params[:user_id]
+        @user_password = session_params[:user_password]
         user = User.find_by_id(@user_id)
         
         # 如果认证成功则创建cookie会话
@@ -31,6 +31,10 @@ class SessionsController < ApplicationController
         flash[:success] = '注销成功'
         redirect_to root_path 
     end
-   
+    
+    private
+    def session_params 
+        params.require(:session).permit(:user_id, :user_password)
+    end
   
 end

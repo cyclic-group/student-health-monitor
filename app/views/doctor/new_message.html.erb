@@ -5,13 +5,15 @@
 </div>
 </nav>
 
+<%= render 'layouts/flash_toast' %>
+
 <div class="container-md">
     <div class="row justify-content-center">
         <div class="col-12 mt-5">
-          <%= form_with model: @message, url: doctor_message_path, method: :post, class: "needs-validation", html: { novalidate: true } do |f| %>
+          <%= form_with model: @message, url: doctor_message_path + "?report_id=#{@report ? @report.id : ''}", method: :post, class: "needs-validation", html: { novalidate: true } do |f| %>
             <div class="input-group mb-3">
               <span class="input-group-text">收件人</span>
-              <%= f.text_field :receiver_id, placeholder: "学号", class: "form-control", required: true %>
+              <%= f.text_field :receiver_id, value: @report ? @report.reporter_id : '', placeholder: "学号", class: "form-control", required: true%>
               <div class="invalid-feedback">
                 必填
               </div>

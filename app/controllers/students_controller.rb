@@ -1,5 +1,3 @@
-require "byebug"
-
 class StudentsController < ApplicationController
     before_action :set_current_student
 
@@ -8,6 +6,7 @@ class StudentsController < ApplicationController
     
     def show_messages
         @messages = @current_student.messages.sort_by { |m| m.created_at }.reverse
+        render :show_messages 
     end
 
     def show_message
@@ -17,7 +16,8 @@ class StudentsController < ApplicationController
             @message.save
             render :show_message 
         else 
-            redirect_to student_messages_path, status: 404
+            flash.now[:warning] = '消息不存在'
+            show_messages 
         end 
     end
 
@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
 
     private 
     def report_params
-        params.require(:report).permit(:step_count, :sleep_hours, symptons: [])
+        params.require(:report).permit(:step_count, :sleep_hours, :remark, symptons: [])
     end
 
     # 若当前用户是学生，设置`@current_student`为该学生；否则另该用户重新登录
@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
         @current_student ||= Student.find_by(id: @current_user.id)
         unless @current_student
             flash.now[:warning] = '非学生账号'
-            render 'session/new', status: 403
+            render 'sessions/new', status: 403
         end
     end
 end

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     def set_current_user
         @current_user ||= User.find_by_id(session[:user_id])
         unless @current_user 
-            flash[:warning] = "请先登录"
+            flash.now[:warning] = "请先登录"
             render 'sessions/new', status: 401
         end
     end
