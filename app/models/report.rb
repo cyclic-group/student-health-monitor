@@ -32,6 +32,6 @@ class Report < ApplicationRecord
     end
 
     def self.within_one_week 
-        Report.where("created_at > :one_week_ago", { one_week_ago: 4.day.ago })
+        Report.where("created_at > :one_week_ago", { one_week_ago: 1.week.ago })
     end
 end

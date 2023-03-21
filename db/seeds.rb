@@ -180,27 +180,27 @@ report_remarks = [
 ]
 
 
-generate_report_trend Report::SYMPTONS[0], 30, -1
-generate_report_noise Report::SYMPTONS[0], 20
+generate_report_trend Report::SYMPTONS[0], 10, -1
+generate_report_noise Report::SYMPTONS[0], 10
 
-generate_report_trend Report::SYMPTONS[1], 3, 0.6
-generate_report_noise Report::SYMPTONS[1], 30
+generate_report_trend Report::SYMPTONS[1], -12, 0.6
+generate_report_noise Report::SYMPTONS[1], 10
 
 generate_report_trend Report::SYMPTONS[2], 32, -4, 0.2
-generate_report_noise Report::SYMPTONS[2], 33
+generate_report_noise Report::SYMPTONS[2], 10
 
-generate_report_trend Report::SYMPTONS[3], 13, 5, -0.4
-generate_report_noise Report::SYMPTONS[3], 30
+generate_report_trend Report::SYMPTONS[3], 0, 2, -0.4
+generate_report_noise Report::SYMPTONS[3], 10
 
-generate_report_trend Report::SYMPTONS[4], 3, 0.1
-generate_report_noise Report::SYMPTONS[4], 300 
+generate_report_trend Report::SYMPTONS[4], 0, 0
+generate_report_noise Report::SYMPTONS[4], 9
 
-generate_report_trend Report::SYMPTONS[5], 1, 2, -0.1
-generate_report_noise Report::SYMPTONS[5], 40
+generate_report_trend Report::SYMPTONS[5], 0, 0.2, -0.1
+generate_report_noise Report::SYMPTONS[5], 9
 
-generate_report_trend Report::SYMPTONS[6], 13, 4, -0.3
-generate_report_noise Report::SYMPTONS[6], 30
+generate_report_trend Report::SYMPTONS[6], 0, 0, 0.01
+generate_report_noise Report::SYMPTONS[6], 10
 
 report_remarks.each do |remark| 
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24),  symptons: rand_symptons, remark: remark)
+    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24),  symptons: [Report::SYMPTONS.sample], remark: remark)
 end 
