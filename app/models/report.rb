@@ -30,4 +30,8 @@ class Report < ApplicationRecord
     def self.within_one_month
         Report.where("created_at > :one_month_ago", { one_month_ago: 1.month.ago })
     end
+
+    def self.within_one_week 
+        Report.where("created_at > :one_week_ago", { one_week_ago: 1.week.ago })
+    end
 end

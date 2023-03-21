@@ -6,13 +6,13 @@
 <div class="col-12">
     <div class="card bg-light border-success text-dark box-shadow">
         <div class="card-header app-color-blue-dark fw-bold fs-4">
-            症状分布（最近一个月）
+            症状分布（最近一周）
         </div>
         <div class="card-body">
             <%
                 sympton_counts = {}
                 Report::SYMPTONS.each do |sympton| 
-                    sympton_counts[sympton] = Report.within_one_month.has_sympton(sympton).size 
+                    sympton_counts[sympton] = Report.within_one_week.has_sympton(sympton).size 
                 end
             %>
             <%= pie_chart sympton_counts %>
