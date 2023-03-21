@@ -33,12 +33,29 @@ end
 
 # 随机产生日期
 def rand_date 
-    Time.now - (Random.random_number * 30).floor.day 
+    rand(0..29).day.ago 
 end 
 
 def rand_date_last_n_week n 
     Time.now - (rand(0..6) + (n - 1) * 7).day 
 end
+
+def generate_report_noise sympton, n  
+    (1..n).each do 
+        Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date)
+    end
+end
+
+def generate_report_trend sympton, initial, change, change_of_change = 0
+    current = initial 
+    (0..29).to_a.reverse.each do |n| 
+        (1..(current.floor)).each do 
+            Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: n.day.ago)
+        end
+        current += change 
+        change += change_of_change
+    end 
+end 
 
 
 # Insert users
@@ -163,106 +180,26 @@ report_remarks = [
 ]
 
 
-sympton = Report::SYMPTONS[0]
-(0..20).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
+generate_report_trend Report::SYMPTONS[0], 30, -1
+generate_report_noise Report::SYMPTONS[0], 20
 
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-end 
+generate_report_trend Report::SYMPTONS[1], 3, 0.6
+generate_report_noise Report::SYMPTONS[1], 30
 
-sympton = Report::SYMPTONS[1]
-(0..20).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
+generate_report_trend Report::SYMPTONS[2], 32, -4, 0.2
+generate_report_noise Report::SYMPTONS[2], 33
 
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
+generate_report_trend Report::SYMPTONS[3], 13, 5, -0.4
+generate_report_noise Report::SYMPTONS[3], 30
 
-end 
+generate_report_trend Report::SYMPTONS[4], 3, 0.1
+generate_report_noise Report::SYMPTONS[4], 300 
 
-sympton = Report::SYMPTONS[2]
-(0..10).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
+generate_report_trend Report::SYMPTONS[5], 1, 2, -0.1
+generate_report_noise Report::SYMPTONS[5], 40
 
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-
-end 
-
-sympton = Report::SYMPTONS[3]
-(0..10).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-
-end 
-
-sympton = Report::SYMPTONS[4]
-(0..10).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-
-end 
-
-sympton = Report::SYMPTONS[5]
-(0..10).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-
-end 
-
-sympton = Report::SYMPTONS[6]
-(0..10).each  do
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(4))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(3))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(2))
-    Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24), symptons: [sympton], remark: "", created_at: rand_date_last_n_week(1))
-
-end 
+generate_report_trend Report::SYMPTONS[6], 13, 4, -0.3
+generate_report_noise Report::SYMPTONS[6], 30
 
 report_remarks.each do |remark| 
     Report.create!(reporter_id: rand_reporter, step_count: rand(0..10_000), sleep_hours: rand(0..24),  symptons: rand_symptons, remark: remark)
