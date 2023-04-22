@@ -21,7 +21,7 @@ def rand_reporter
     rand(100000..100009)
 end
 
-# 50% returns 0, 50% returns 1
+# 50% 概率返回 0, 50% 概率返回 1
 def flip_coin 
     (Random.random_number * 2).floor 
 end 
@@ -58,14 +58,14 @@ def generate_report_trend sympton, initial, change, change_of_change = 0
 end 
 
 
-# Insert users
+# 插入用户
 User.delete_all
 User.create!(id: User::BROADCAST_ID, password_hash: BCrypt::Password.create('2357bd'), role: 'student')
 Student.create!(id: User::BROADCAST_ID, last_name: '--', first_name: '--', dormitary: '--')
 User.create!(id: 0, password_hash: BCrypt::Password.create('2357bd'), role: 'admin')
 User.create!(id: 1, password_hash: BCrypt::Password.create('2357bd'), role: 'doctor')
 User.create!(id: 112358, password_hash: BCrypt::Password.create('gkp233'), role: 'student')
-Student.create!(id: 112358, last_name: '高', first_name: '康平', dormitary: '润园6号公寓B座233')
+Student.create!(id: 112358, last_name: '高', first_name: '康平', dormitary: '萃园9号公寓A座510')
 
 names = [
 "张梓萱",
@@ -81,7 +81,7 @@ names = [
 ]
 
 dormitaries = [
-    "萃园-01C幢342",
+    "萃园-01A幢342",
     "萃园-06B幢321",
     "润园-04A幢434",
     "润园-04A幢434",
@@ -89,8 +89,8 @@ dormitaries = [
     "润园-04A幢434",
     "润园-04A幢434",
     "润园-04A幢434",
-    "萃园-01C幢342",
-    "萃园-01C幢342"
+    "萃园-01A幢342",
+    "萃园-01A幢342"
 ]
 
 (100000..100009).zip(names).zip(dormitaries).each do |(id, name), dormitary| 
@@ -98,7 +98,7 @@ dormitaries = [
     Student.create!(id: id, last_name: name[0], first_name: name[1..], dormitary: dormitary)
 end
 
-# Insert messages
+# 插入消息
 Message.delete_all
 
 ann_contents = ["所有学生必须遵守校规，包括行为规范和课堂纪律。任何违反规定的行为都将受到严厉处理。\n\n校务处",
