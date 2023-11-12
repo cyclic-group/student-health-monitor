@@ -17,7 +17,7 @@ def generate_msg(content)
     Message.create!(content: content, title: "医嘱Y", sender_id: 1, receiver_id: 112358)
 end
 
-def rand_reporter 
+def rand_reporter
     rand(100000..100009)
 end
 

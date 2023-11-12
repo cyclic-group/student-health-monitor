@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
 
     def show_home
     end 
-    
+
     def show_messages
         @messages = @current_student.messages.sort_by { |m| m.created_at }.reverse
         render :show_messages 
@@ -31,7 +31,7 @@ class StudentsController < ApplicationController
     def create_report 
         @report = Report.new report_params
         @report.reporter = @current_student
-        if @report.save
+        if @report.save 
             flash[:success] = "打卡成功！"
             redirect_to student_home_path
         else  
