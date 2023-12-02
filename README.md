@@ -15,6 +15,7 @@
 - 管理员用户拥有全面的系统控制权限。
 - 可以查看疾病统计数据，从而更好地了解学生群体的整体健康状况。
 - 可以发布通知，确保学生和医生及时获得关键信息。
+
 ## 如何使用
 1.学生用户
 - 登录系统，进入个人仪表板。
@@ -54,8 +55,11 @@ rails server
 - Dewer
 
 ## 版权和许可
+
 此项目采用[MIT许可证](https://chat.openai.com/c/LICENSE)。详细信息请参阅许可证文件。
----
+
+--- 
+
 如果您对该项目有任何建议或反馈，请随时联系我们。谢谢您的使用！
 
 ![image](https://github.com/cyclic-group/student-health-monitor/assets/129709096/605abca3-fc32-4535-a6de-9534bf7035af)
