@@ -10,14 +10,14 @@
             <%= form_with scope: :session, url: login_path, method: :post, class: 'needs-validation', html: { novalidate: true } do |form| %>
                 <div class="form-floating mb-4 mb-sm-3">
                     <%= form.text_field :user_id, class: 'form-control text-field', placeholder: '账号 (0/1/2)', value: @user_id, required: true %>
-                    <%= form.label :user_id, '账号', class: 'form-label floating-label' %>
+                    <%= form.label :user_id, '账号 (0/1/2)', class: 'form-label floating-label' %>
                     <div class="invalid-feedback">
                         必填
                     </div>
                 </div>
                 <div class="form-floating mb-5 mb-sm-4">
                     <%= form.password_field :user_password, class: 'form-control text-field', placeholder: '密码 (admin/doctor/student)', required: true %>
-                    <%= form.label :user_password, '密码', class: 'form-label floating-label' %>
+                    <%= form.label :user_password, '密码(0/1/2)', class: 'form-label floating-label' %>
                     <div class="invalid-feedback">
                         必填
                     </div>
