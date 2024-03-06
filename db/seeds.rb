@@ -14,7 +14,7 @@ def generate_announcement(content)
 end 
 
 def generate_msg(content)
-    Message.create!(content: content, title: "医嘱Y", sender_id: 1, receiver_id: 112358)
+    Message.create!(content: content, title: "医嘱Y", sender_id: 1, receiver_id: 2)
 end
 
 def rand_reporter
@@ -65,7 +65,7 @@ Student.create!(id: User::BROADCAST_ID, last_name: '--', first_name: '--', dormi
 User.create!(id: 0, password_hash: BCrypt::Password.create('admin'), role: 'admin')
 User.create!(id: 1, password_hash: BCrypt::Password.create('doctor'), role: 'doctor')
 User.create!(id: 2, password_hash: BCrypt::Password.create('student'), role: 'student')
-Student.create!(id: 112358, last_name: '高', first_name: '康平', dormitary: '萃园9号公寓A座510')
+Student.create!(id: 2, last_name: '高', first_name: '康平', dormitary: '萃园9号公寓A座510')
 
 names = [
 "张梓萱",
