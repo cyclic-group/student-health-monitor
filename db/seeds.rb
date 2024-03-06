@@ -62,9 +62,9 @@ end
 User.delete_all
 User.create!(id: User::BROADCAST_ID, password_hash: BCrypt::Password.create('2357bd'), role: 'student')
 Student.create!(id: User::BROADCAST_ID, last_name: '--', first_name: '--', dormitary: '--')
-User.create!(id: 0, password_hash: BCrypt::Password.create('2357bd'), role: 'admin')
-User.create!(id: 1, password_hash: BCrypt::Password.create('2357bd'), role: 'doctor')
-User.create!(id: 112358, password_hash: BCrypt::Password.create('gkp233'), role: 'student')
+User.create!(id: 0, password_hash: BCrypt::Password.create('admin'), role: 'admin')
+User.create!(id: 1, password_hash: BCrypt::Password.create('doctor'), role: 'doctor')
+User.create!(id: 2, password_hash: BCrypt::Password.create('student'), role: 'student')
 Student.create!(id: 112358, last_name: '高', first_name: '康平', dormitary: '萃园9号公寓A座510')
 
 names = [
