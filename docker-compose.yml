@@ -12,7 +12,7 @@ services:
     volumes: 
       - .:/app
     environment:
-      - RAILS_ENV
+      - RAILS_ENV=production
     ports:
       - 3000:3000
     depends_on:
