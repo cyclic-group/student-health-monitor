@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    extends:
+      file: docker-compose-test.yml
+      service: web
+    volumes:
+      - student_health_monitor_postgres_data_prod:/var/lib/postgresql/data
+    restart: always
+  web:
+    extends:
+      file: docker-compose-test.yml
+      service: web
+    environment:
+      - RAILS_ENV=production
+    restart: always
+
+volumes:
+  student_health_monitor_postgres_data_prod:

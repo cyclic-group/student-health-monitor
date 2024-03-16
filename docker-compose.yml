@@ -1,19 +1,73 @@
 version: '3'
 services:
-  db:
+  db_dev:
+    profiles:
+      - development
     image: postgres
     volumes: 
-      - ./postgres_data:/var/lib/postgresql/data
+      - student_health_monitor_postgres_data_test:/var/lib/postgresql/data
+    networks:
+      - student_health_monitor_network_test
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      - POSTGRES_HOST_AUTH_METHOD=trust
 
-  web:
+  web_dev:
+    profiles:
+      - development 
     build: .
     volumes: 
       - .:/app
     environment:
-      - RAILS_ENV=production
+      - RAILS_ENV=development
+      - RAILS_DB_HOST=db_dev
+      - PIDFILE=/tmp/pids/server.pid
     ports:
       - 3000:3000
+    tmpfs:
+      - /tmp/pids
+    networks:
+      - student_health_monitor_network_test
+    depends_on:
+      - db_dev
+
+  db:
+    profiles:
+      - production
+    image: postgres
+    volumes: 
+      - student_health_monitor_postgres_data:/var/lib/postgresql/data
+    networks:
+    - student_health_monitor_network
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    restart: always
+
+  web:
+    profiles:
+      - production 
+    build: .
+    volumes:  
+      - .:/app
+    networks:
+      - student_health_monitor_network
+    environment:
+      - RAILS_ENV=production
+      - RAILS_DB_HOST=db
+      - PIDFILE=/tmp/pids/server.pid
+    ports:
+      - 3000:3000
+    tmpfs:
+      - /tmp/pids
+    restart: always
     depends_on:
       - db
+
+volumes:
+  student_health_monitor_postgres_data_test:
+  student_health_monitor_postgres_data:
+
+networks:
+  student_health_monitor_network_test:
+  student_health_monitor_network:
+
+  
